@@ -1,0 +1,24 @@
+{
+    "cssvar.files": [
+        "./node_modules/open-props/open-props.min.css"        
+    ],
+
+    "cssvar.ignore": [
+        
+    ],
+
+    "cssvar.extensions": [
+        "css",
+        "scss",
+        "sass",
+        "less",
+        "postcss",
+        "vue",
+        "svelte",
+        "astro",
+        "ts",
+        "tsx",
+        "js",
+        "jsx"
+    ]
+}

@@ -1,0 +1,12 @@
+@mixin define($brand, $text1, $text2, $surface1, $surface2, $surface3, $surface4) {
+    --tester: #{$brand};
+    --brand: #{$brand};
+
+    --text-1: #{$text1};
+    --text-2: #{$text2};
+
+    --surface-1: #{$surface1};
+    --surface-2: #{$surface2};
+    --surface-3: #{$surface3};
+    --surface-4: #{$surface4};
+}

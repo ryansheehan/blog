@@ -2,9 +2,9 @@
     import "$lib/sass/global.scss";
 </script>
 
-<div class="site-wrapper">
+<div class="site-wrapper" data-theme="dim">
     <header>
-        <p>Header</p>
+        <p>Header</p>        
     </header>
     
     <main>
@@ -14,6 +14,9 @@
 
 <style lang="scss">
     .site-wrapper {
+        background-color: var(--surface-1);
+        color: var(--text-1);
+
         min-block-size: 100vh;
         display: flex;
         flex-flow: column nowrap;
@@ -21,6 +24,7 @@
 
     header {
         min-block-size: 64px;
+        display: flex;
     }
 
     main {
