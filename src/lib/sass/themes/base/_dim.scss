@@ -1,16 +1,4 @@
-@use "../mixins/theme.mixin" as theme;
-
 html {
-	// @include theme.define(
-	// 	$brand: var(--orange-4),
-	// 	$text1: var(--gray-3),
-	// 	$text2: var(--gray-4),
-	// 	$surface1: var(--gray-8),
-	// 	$surface2: var(--gray-7),
-	// 	$surface3: var(--gray-6),
-	// 	$surface4: var(--gray-5),
-	// );
-
 	--brand-dim: var(--orange-4);
 
 	--text-1-dim: var(--gray-3);

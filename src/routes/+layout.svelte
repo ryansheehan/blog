@@ -4,7 +4,14 @@
 
 <div class="site-wrapper" data-theme="dim">
     <header>
-        <p>Header</p>        
+        <h1>Ryan Sheehan</h1>
+        <nav>
+            <!-- svelte-ignore a11y-invalid-attribute -->
+            <a href="#">About</a>
+            <!-- svelte-ignore a11y-invalid-attribute -->
+            <a href="#">Resume</a>
+            <div>Socials</div>
+        </nav>
     </header>
     
     <main>
