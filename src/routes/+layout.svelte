@@ -1,18 +1,10 @@
 <script lang="ts">
     import "$lib/sass/global.scss";
+    import AppBar from '$lib/components/appbar.svelte';
 </script>
 
-<div class="site-wrapper" data-theme="dim">
-    <header>
-        <h1>Ryan Sheehan</h1>
-        <nav>
-            <!-- svelte-ignore a11y-invalid-attribute -->
-            <a href="#">About</a>
-            <!-- svelte-ignore a11y-invalid-attribute -->
-            <a href="#">Resume</a>
-            <div>Socials</div>
-        </nav>
-    </header>
+<div class="site-wrapper" data-theme="dark">
+    <AppBar/>
     
     <main>
         <slot/>
