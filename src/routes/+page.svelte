@@ -7,15 +7,10 @@
 
 <style lang="scss">
     .test {
-        background-color: var(--surface-2);
-        border-radius: var(--radius-4);
-        
         margin-inline: auto;
-        box-shadow: var(--shadow-4);
     }
 
     .test h2 {
         text-align: center;
-        color: var(--brand);
     }
 </style>

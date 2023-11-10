@@ -1,110 +1,213 @@
-@charset "utf-8";
+/*
+label: Core Remedies
+version: 0.1.0-beta.2
+
+note: |
+  These remedies are recommended
+  as a starter for any project.
+
+category: file
+*/
 
 /*
-    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
-    - The "symbol *" part is to solve Firefox SVG sprite bug
-    - The "html" attribute is exclud, because otherwise a bug in Chrome breaks the CSS hyphens property (https://github.com/elad2412/the-new-css-reset/issues/36)
- */
-*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
-	all: unset;
-	display: revert;
-}
+label: Box Sizing
 
-/* Preferred box-sizing value */
+note: |
+  Use border-box by default, globally.
+
+category: global
+*/
 *,
-*::before,
-*::after {
+::before,
+::after {
 	box-sizing: border-box;
 }
 
-* {
+/*
+label: Line Sizing
+
+note: |
+  Consistent line-spacing,
+  even when inline elements have different line-heights.
+
+links:
+  - https://drafts.csswg.org/css-inline-3/#line-sizing-property
+
+category: global
+*/
+html {
+	line-sizing: normal;
+}
+
+/*
+label: Body Margins
+
+note: |
+  Remove the tiny space around the edge of the page.
+
+category: global
+*/
+body {
 	margin: 0;
-	padding: 0;
-	font: inherit;
 }
 
-/* Reapply the pointer cursor for anchor tags */
-a,
-button {
-	cursor: revert;
-}
+/*
+label: Hidden Attribute
 
-/* Remove list styles (bullets/numbers) */
-ol,
-ul,
-menu {
-	list-style: none;
-}
+note: |
+  Maintain `hidden` behavior when overriding `display` values.
 
-/* For images to not be able to exceed their container */
-img {
-	max-inline-size: 100%;
-	max-block-size: 100%;
-}
-
-/* removes spacing between cells in tables */
-table {
-	border-collapse: collapse;
-}
-
-/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
-input,
-textarea {
-	user-select: auto;
-	-webkit-user-select: auto;
-}
-
-/* revert the 'white-space' property for textarea elements on Safari */
-textarea {
-	white-space: revert;
-}
-
-/* minimum style to allow to style meter element */
-meter {
-	-webkit-appearance: revert;
-	appearance: revert;
-}
-
-/* preformatted text - use only for this feature */
-:where(pre) {
-	all: revert;
-}
-
-/* reset default text opacity of input placeholder */
-::placeholder {
-	color: unset;
-}
-
-/* remove default dot (•) sign */
-::marker {
-	content: initial;
-}
-
-/* fix the feature of 'hidden' attribute.
-   display:revert; revert to element instead of attribute */
-:where([hidden]) {
+  category: global
+*/
+[hidden] {
 	display: none;
 }
 
-/* revert for bug in Chromium browsers
-   - fix for the content editable attribute will work properly.
-   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element */
-:where([contenteditable]:not([contenteditable='false'])) {
-	-moz-user-modify: read-write;
-	-webkit-user-modify: read-write;
-	overflow-wrap: break-word;
-    line-break: after-white-space;
-	-webkit-line-break: after-white-space;
-    user-select: auto;
-	-webkit-user-select: auto;
+/*
+label: Responsive Embeds
+
+note: |
+  1. Block display is usually what we want
+  2. The `vertical-align` removes strange space-below in case authors overwrite the display value
+  3. Responsive by default
+  4. Audio without `[controls]` remains hidden by default
+
+category: embedded elements
+*/
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+	display: block;
+	vertical-align: middle;
+	max-width: 100%;
+}
+audio:not([controls]) {
+	display: none;
 }
 
-/* apply back the draggable feature - exist only in Chromium and Safari */
-:where([draggable='true']) {
-	-webkit-user-drag: element;
+/*
+label: Responsive Images
+
+note: |
+  These new elements display inline by default,
+  but that's not the expected behavior for either one.
+  This can interfere with proper layout and aspect-ratio handling.
+
+  1. Remove the unnecessary wrapping `picture`, while maintaining contents
+  2. Source elements have nothing to display, so we hide them entirely
+
+category: embedded elements
+*/
+picture {
+	display: contents;
+}
+source {
+	display: none;
 }
 
-/* Revert Modal native behavior */
-:where(dialog:modal) {
-	all: revert;
+/*
+label: Aspect Ratios
+
+note: |
+  Maintain intrinsic aspect ratios when `max-width` is applied.
+  `iframe`, `embed`, and `object` are also embedded,
+  but have no intrinsic ratio,
+  so their `height` needs to be set explicitly.
+
+category: embedded elements
+*/
+img,
+svg,
+video,
+canvas {
+	font-style: italic;
+	background-repeat: no-repeat;
+	background-size: cover;
+	shape-margin: 1rem;
+	max-inline-size: 100%;
+	height: auto;
+	vertical-align: middle;
+}
+
+/*
+label: Audio Width
+
+note: |
+  There is no good reason elements default to 300px,
+  and audio files are unlikely to come with a width attribute.
+
+category: embedded elements
+*/
+audio {
+	width: 100%;
+}
+
+/*
+label: Image Borders
+
+note: |
+  Remove the border on images inside links in IE 10 and earlier.
+
+category: legacy browsers
+*/
+img {
+	border-style: none;
+}
+
+/*
+label: SVG Overflow
+
+note: |
+  Hide the overflow in IE 10 and earlier.
+
+category: legacy browsers
+*/
+svg {
+	overflow: hidden;
+}
+
+/*
+label: HTML5 Elements
+
+note: |
+  Default block display on HTML5 elements.
+  For oldIE to apply this styling one needs to add some JS as well (i.e. `document.createElement("main")`)
+
+links:
+  - https://www.sitepoint.com/html5-older-browsers-and-the-shiv/
+
+category: legacy browsers
+*/
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+	display: block;
+}
+
+/*
+label: Checkbox & Radio Inputs
+
+note: |
+  1. Add the correct box sizing in IE 10
+  2. Remove the padding in IE 10
+
+category: legacy browsers
+*/
+[type='checkbox'],
+[type='radio'] {
+	box-sizing: border-box;
+	padding: 0;
 }

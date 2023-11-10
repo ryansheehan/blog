@@ -1,10 +1,13 @@
 <script lang="ts">
     import "$lib/sass/global.scss";
-    import AppBar from '$lib/components/appbar.svelte';
+    import {themeToggle, theme} from '$lib/themes';
 </script>
 
-<div class="site-wrapper" data-theme="dark">
-    <AppBar/>
+<div class="site-wrapper">
+    <header>
+        <span>Ryan Sheehan</span>
+        <button use:themeToggle>{$theme}</button>
+    </header>
     <div class="content-wrapper">
         <main>
             <slot/>
@@ -13,10 +16,7 @@
 </div>
 
 <style lang="scss">
-    .site-wrapper {
-        background-color: var(--surface-1);
-        color: var(--text-1);
-
+    .site-wrapper {        
         block-size: 100vh;
         display: flex;
         flex-flow: column nowrap;
@@ -26,9 +26,5 @@
         flex: 1 1 auto;
         display: flex;
         justify-content: center;
-    }
-
-    main {
-        max-inline-size: var(--size-lg);
     }
 </style>
