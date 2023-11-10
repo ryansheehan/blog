@@ -14,9 +14,9 @@
     header {
         block-size: var(--size-10);
         background-color: var(--surface-4);
-        padding-inline: var(--size-4);
         display: flex;
         align-items: center;
+        justify-content: center;
     }
 
     h1 {
@@ -29,6 +29,7 @@
         align-items: baseline;
         gap: var(--size-2);
         flex: 1;
+        max-width: var(--size-lg);
     }
 
     .title-link {

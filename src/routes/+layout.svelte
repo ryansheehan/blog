@@ -5,10 +5,11 @@
 
 <div class="site-wrapper" data-theme="dark">
     <AppBar/>
-    
-    <main>
-        <slot/>
-    </main>
+    <div class="content-wrapper">
+        <main>
+            <slot/>
+        </main>
+    </div>
 </div>
 
 <style lang="scss">
@@ -16,17 +17,18 @@
         background-color: var(--surface-1);
         color: var(--text-1);
 
-        min-block-size: 100vh;
+        block-size: 100vh;
         display: flex;
         flex-flow: column nowrap;
     }
 
-    header {
-        min-block-size: 64px;
+    .content-wrapper {
+        flex: 1 1 auto;
         display: flex;
+        justify-content: center;
     }
 
     main {
-        flex: 1 1 auto;
+        max-inline-size: var(--size-lg);
     }
 </style>
