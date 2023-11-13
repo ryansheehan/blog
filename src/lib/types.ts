@@ -19,7 +19,7 @@ function validateStringParam(param: string | undefined | null) {
 
 function validateStringDateParam(param: string | undefined | null) {
 	if (typeof param === 'string') {
-		if (Date.parse(param) !== Number.NaN) {
+		if (!Number.isNaN(Date.parse(param))) {
 			return true;
 		}
 	}

@@ -1,6 +1,8 @@
 import { json } from '@sveltejs/kit'
 import type { PostFrontMatter } from '$lib/types'
 
+export const prerender = 'auto';
+
 async function getPosts() {
 	let posts: PostFrontMatter[] = []
 

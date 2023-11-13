@@ -1,9 +1,13 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import postcssPresetEnv from 'postcss-preset-env';
+import { enhancedImages } from '@sveltejs/enhanced-img';
 
 export default defineConfig({
-	plugins: [sveltekit()],
+	plugins: [
+		enhancedImages(),
+		sveltekit()
+	],
 	css: {
 		preprocessorOptions: {
 			scss: {
