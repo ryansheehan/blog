@@ -15,14 +15,16 @@
   <!-- Title -->
 	<hgroup>
 		<h1>{data.meta.title}</h1>
-		<p>Published at {formatDate(data.meta.date)}</p>
+		{#if data.meta.date}
+			<p>Published at {formatDate(data.meta.date)}</p>
+		{/if}
 	</hgroup>
 
   <!-- Tags -->
 	<div class="tags">
-		{#each data.meta.categories as category}
+		<!-- {#each data.meta.categories as category}
 			<span class="surface-4">&num;{category}</span>
-		{/each}
+		{/each} -->
 	</div>
 
   <!-- Post -->
@@ -33,7 +35,7 @@
 
 <style>
 	article {
-		max-inline-size: var(--size-content-3);
+		/* max-inline-size: var(--size-content-3); */
 		margin-inline: auto;
 	}
 
@@ -41,19 +43,19 @@
 		text-transform: capitalize;
 	}
 
-	h1 + p {
+	/* h1 + p {
 		margin-top: var(--size-2);
 		color: var(--text-2);
-	}
+	} */
 
 	.tags {
 		display: flex;
-		gap: var(--size-3);
-		margin-top: var(--size-7);
+		/* gap: var(--size-3);
+		margin-top: var(--size-7); */
 	}
 
-	.tags > * {
+	/* .tags > * {
 		padding: var(--size-2) var(--size-3);
 		border-radius: var(--radius-round);
-	}
+	} */
 </style>

@@ -20,5 +20,8 @@
         "tsx",
         "js",
         "jsx"
+    ],
+    "cSpell.words": [
+        "mdsvex"
     ]
 }
