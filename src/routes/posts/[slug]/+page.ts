@@ -8,11 +8,9 @@ export async function load({ params }) {
 			.catch(() => import(`../../../posts/${params.slug}/index.md`))
 			.catch(() => import(`../../../posts/${params.slug}/${params.slug}.md`))
 		);
-
-		console.log(post.metadata);
 		
-		if(!dev && post.metadata) {
-			
+		if(!dev && !post.metadata?.publish) {
+			throw error(404, `Could not find ${params.slug}`);
 		}
 
 		return {
@@ -20,7 +18,7 @@ export async function load({ params }) {
 			meta: post.metadata
 		}
 	} catch (e) {
-		throw error(404, `Could not find ${params.slug}`)
+		throw error(404, `Could not find ${params.slug}`);
 	}
 }
 

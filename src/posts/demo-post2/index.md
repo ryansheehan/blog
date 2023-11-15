@@ -4,7 +4,7 @@ description: Test data for posts
 date: 11/10/2023
 ---
 
-![test image](./test.jpg)
+![test](./test.jpg?enhanced)
 
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa eveniet accusantium ratione praesentium rerum blanditiis, earum, maiores cum mollitia aut aliquid, omnis odit sed veniam distinctio optio commodi nihil! Totam?
 

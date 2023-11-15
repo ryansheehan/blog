@@ -3,18 +3,22 @@ import { vitePreprocess } from '@sveltejs/kit/vite';
 import { mdsvex, escapeSvelte } from 'mdsvex';
 import shiki from 'shiki';
 
-import remarkUnwrapImages from 'remark-unwrap-images'
-import remarkToc from 'remark-toc'
-import rehypeSlug from 'rehype-slug'
+import remarkUnwrapImages from 'remark-unwrap-images';
+import remarkToc from 'remark-toc';
+import rehypeSlug from 'rehype-slug';
+import relativeImages from 'mdsvex-relative-images';
+import rehypeRewrite from 'rehype-rewrite';
+
 
 // https://joyofcode.xyz/sveltekit-markdown-blog#setting-up-mdsvex
+
 
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
 	extensions: ['.md', '.svx'],
 	smartypants: true,
 	layout: {
-		_: './src/mdsvex.svelte'
+		// _: './src/mdsvex.svelte'
 	},
 	highlight: {
 		highlighter: async (code, lang = 'text') => {
@@ -23,8 +27,22 @@ const mdsvexOptions = {
 			return `{@html \`${html}\` }`
 		},
 	},
-	remarkPlugins: [remarkUnwrapImages, [remarkToc, { tight: true }]],
-	rehypePlugins: [rehypeSlug],	
+	remarkPlugins: [
+		remarkUnwrapImages, 
+		relativeImages,
+		[remarkToc, { tight: true }]
+	],
+	rehypePlugins: [
+		[rehypeRewrite, {
+			rewrite: (node) => {
+				if (node.type == 'element' && node.tagName == 'img') {
+					console.log('properties', node.properties);
+					node.tagName = 'enhanced:img'
+				}
+			}
+		}],
+		rehypeSlug
+	],	
 }
 
 /** @type {import('@sveltejs/kit').Config} */
