@@ -8,7 +8,8 @@ import remarkToc from 'remark-toc';
 import rehypeSlug from 'rehype-slug';
 import relativeImages from 'mdsvex-relative-images';
 import rehypeRewrite from 'rehype-rewrite';
-import path from 'path';
+
+// https://github.com/JonasKruckenberg/imagetools/blob/main/docs/directives.md
 
 
 // https://joyofcode.xyz/sveltekit-markdown-blog#setting-up-mdsvex
