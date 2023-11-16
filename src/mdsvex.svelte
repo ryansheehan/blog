@@ -1,6 +1,9 @@
 <script lang="ts" context="module">
 	// import img from '$lib/mdsvex/img.svelte';
 	// export { img }
+
+	import picture from '$lib/mdsvex/picture.svelte';
+	export {picture};
 </script>
 
 <script lang="ts">
@@ -22,5 +25,7 @@
 <slot />
 
 <style lang="scss">
-
+	:global(picture) {
+		display: block;
+	}
 </style>

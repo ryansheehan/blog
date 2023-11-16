@@ -33,7 +33,7 @@
 	</div>
 </article>
 
-<style>
+<style lang="scss">
 	article {
 		/* max-inline-size: var(--size-content-3); */
 		margin-inline: auto;

@@ -8,7 +8,7 @@ import remarkToc from 'remark-toc';
 import rehypeSlug from 'rehype-slug';
 import relativeImages from 'mdsvex-relative-images';
 import rehypeRewrite from 'rehype-rewrite';
-import { Value } from 'sass';
+import path from 'path';
 
 
 // https://joyofcode.xyz/sveltekit-markdown-blog#setting-up-mdsvex
@@ -27,7 +27,7 @@ const mdsvexOptions = {
 	extensions: ['.md', '.svx'],
 	smartypants: true,
 	layout: {
-		_: './src/mdsvex.svelte'
+		// _: './src/mdsvex.svelte'
 	},
 	highlight: {
 		highlighter: async (code, lang = 'text') => {
@@ -50,12 +50,15 @@ const mdsvexOptions = {
 					node.properties['class'] = `post-img ${node.properties['class'] ?? ''}`.trimEnd();
 				}
 				
-				if (node.type == 'raw' && node.value?.startsWith("<script>")) {		
-					const re = /"\.[\\\/].*\.(apng|avif|gif|jpg|jpeg|jfif|pjepg|pjp|png|svg|webp)"/gm;
+				if (node.type == 'raw' && node.value?.startsWith("<script>")) {						
+					const re = /"\.[\\\/].*\.(apng|avif|gif|jpg|jpeg|jfif|pjpeg|pjp|png|svg|webp)\??.*"/gm;					
 					let newValue = node.value;
-					Array.from(node.value.match(re)).forEach(m => {
-						const replacement = `"${m.split('"')[1]}?enhanced"`;
-						newValue = newValue.replace(m, replacement);						
+					Array.from(node.value.match(re)).forEach(m => {								
+						const relativePath = m.split('"')[1];						
+						const url = new URL(relativePath, "c://");						
+						url.searchParams.append('enhanced', '');												
+						const updatedPath = `".${url.pathname}${url.search}"`;						
+						newValue = newValue.replace(m, updatedPath);						
 					})
 					node.value = newValue;
 				}
