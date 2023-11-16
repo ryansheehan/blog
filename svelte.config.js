@@ -16,7 +16,7 @@ import { Value } from 'sass';
 // rehypeRewrite({
 // 	rewrite: (node) => {
 // 		if (node.type == 'element' && node.tagName == 'script') {
-// 			console.log(node.content, node.children);
+// 			node.properties
 // 		}
 // 	}
 // })
@@ -45,7 +45,9 @@ const mdsvexOptions = {
 		[rehypeRewrite, {
 			rewrite: (node) => {
 				if (node.type == 'element' && node.tagName == 'img') {					
-					node.tagName = 'enhanced:img'
+					node.tagName = 'enhanced:img';
+					// node.properties['sizes'] = "";
+					node.properties['class'] = `post-img ${node.properties['class'] ?? ''}`.trimEnd();
 				}
 				
 				if (node.type == 'raw' && node.value?.startsWith("<script>")) {		

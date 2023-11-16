@@ -1,5 +1,5 @@
 import * as config from '$lib/config';
-import type { PostFrontMatter } from '$lib/types';
+import type { PostFrontMatter } from '$lib/front-matter';
 
 export const prerender = true;
 
