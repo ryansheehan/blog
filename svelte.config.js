@@ -8,9 +8,18 @@ import remarkToc from 'remark-toc';
 import rehypeSlug from 'rehype-slug';
 import relativeImages from 'mdsvex-relative-images';
 import rehypeRewrite from 'rehype-rewrite';
+import { Value } from 'sass';
 
 
 // https://joyofcode.xyz/sveltekit-markdown-blog#setting-up-mdsvex
+
+// rehypeRewrite({
+// 	rewrite: (node) => {
+// 		if (node.type == 'element' && node.tagName == 'script') {
+// 			console.log(node.content, node.children);
+// 		}
+// 	}
+// })
 
 
 /** @type {import('mdsvex').MdsvexOptions} */
@@ -18,7 +27,7 @@ const mdsvexOptions = {
 	extensions: ['.md', '.svx'],
 	smartypants: true,
 	layout: {
-		// _: './src/mdsvex.svelte'
+		_: './src/mdsvex.svelte'
 	},
 	highlight: {
 		highlighter: async (code, lang = 'text') => {
@@ -35,9 +44,18 @@ const mdsvexOptions = {
 	rehypePlugins: [
 		[rehypeRewrite, {
 			rewrite: (node) => {
-				if (node.type == 'element' && node.tagName == 'img') {
-					console.log('properties', node.properties);
+				if (node.type == 'element' && node.tagName == 'img') {					
 					node.tagName = 'enhanced:img'
+				}
+				
+				if (node.type == 'raw' && node.value?.startsWith("<script>")) {		
+					const re = /"\.[\\\/].*\.(apng|avif|gif|jpg|jpeg|jfif|pjepg|pjp|png|svg|webp)"/gm;
+					let newValue = node.value;
+					Array.from(node.value.match(re)).forEach(m => {
+						const replacement = `"${m.split('"')[1]}?enhanced"`;
+						newValue = newValue.replace(m, replacement);						
+					})
+					node.value = newValue;
 				}
 			}
 		}],

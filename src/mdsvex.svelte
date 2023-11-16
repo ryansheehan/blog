@@ -4,16 +4,18 @@
 </script>
 
 <script lang="ts">
-	// import type { Categories } from '$lib/types';
+	import type { Categories } from '$lib/types';
+		
+	// need these to prevent unused prop warnings in browser and in server
+	// this is because mdsvex gets the props dynamically from what
+	// is parsed from frontmatter
+	export let title  = '';title;
+	export let slug = '';slug;
+	export let description = '';description;
+	export let date = '';date;
+	export let categories: Categories[] = [];categories;
+	export let published = false;published;
 	
-	export let title  = '';
-	export let slug = '';
-	export let description = '';
-	export let date = '';
-	// export let categories: Categories[] = [];
-	export let published = false;
-
-	// const foo = {title, slug, description, date, published};
 
 </script>
 
