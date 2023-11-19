@@ -5,8 +5,8 @@
 
 <div class="site-wrapper">
     <header>
-        <span>Ryan Sheehan</span>
-        <button use:themeToggle>{$theme}</button>
+        <h1><a href="/">Ryan Sheehan</a><button use:themeToggle>{$theme}</button></h1>
+        
     </header>
     <div class="content-wrapper">
         <main>
