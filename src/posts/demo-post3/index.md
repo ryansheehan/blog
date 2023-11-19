@@ -1,22 +1,26 @@
 ---
-title: This is a Demo Post
-description: test data for post
-date: 11/10/2023
+title: This is a Demo Post 3
+description: Test data for posts
+date: 11/19/2023
 ---
 
+![test](./test2.jpg)
+
+![test2](./test2.jpg?flip=true&blur=2)
+
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa eveniet accusantium ratione praesentium rerum blanditiis, earum, maiores cum mollitia aut aliquid, omnis odit sed veniam distinctio optio commodi nihil! Totam?
 
-## Section Title
+## Section Title 2
 
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa eveniet accusantium ratione praesentium rerum blanditiis, earum, maiores cum mollitia aut aliquid, omnis odit sed veniam distinctio optio commodi nihil! Totam?
 
-### Sub Section
+### Sub Section 2
 
 * Banana
 * Strawberry
 * Blueberry
 
-### Another Sub Section
+### Another Sub Section 2
 
 | Col | Detail |
 |-----|--------|
