@@ -11,7 +11,7 @@
     <ul class="posts">        
         {#each posts as post (post.slug)}
         <li class="post">
-            <a href={post.slug} class="title"><h3>{post.title}</h3></a>
+            <a href="posts/{post.slug}" class="title"><h3>{post.title}</h3></a>
             <p class="date">{formatDate(post.date)}</p>
             <p class="description">{post.description}</p>
         </li>
