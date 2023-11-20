@@ -1,12 +1,12 @@
 import {dev} from '$app/environment';
 import { error } from '@sveltejs/kit'
 
+export const prerender = 'auto'
+
 export async function load({ params }) {
 	try {		
 		const post = await (
-			import(`../../../posts/${params.slug}.md`)
-			.catch(() => import(`../../../posts/${params.slug}/index.md`))
-			.catch(() => import(`../../../posts/${params.slug}/${params.slug}.md`))
+			import(`../../../posts/${params.slug}/index.md`)			
 		);
 		
 		if(!dev && !post.metadata?.publish) {

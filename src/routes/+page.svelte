@@ -1,35 +1,36 @@
 <script lang="ts">
     export let data;
     import type {PostFrontMatter} from '$lib/front-matter';
+    import {formatDate} from '$lib/utils';
 
     const posts: PostFrontMatter[] = data.posts;
     
 </script>
 
-<p>Main Page</p>
-
-<div class="test">
-    <h2>Test Title</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero eaque eos, sit ullam quisquam saepe perferendis, molestiae dolorum impedit, eius atque illum ducimus ipsum at sunt velit est adipisci eum.</p>
-
-    <ul class="posts-list">        
+<section>
+    <ul class="posts">        
         {#each posts as post (post.slug)}
-        <li class="post-list__item">
-            <a class="post-link" href="posts/{post.slug}">
-                <h3><span>{post.date}</span>{post.title}</h3>
-                <p>{post.description}</p>
-            </a>
+        <li class="post">
+            <a href={post.slug} class="title"><h3>{post.title}</h3></a>
+            <p class="date">{formatDate(post.date)}</p>
+            <p class="description">{post.description}</p>
         </li>
         {/each}        
     </ul>
-</div>
+</section>
 
 <style lang="scss">
-    .test {
-        margin-inline: auto;
+    .posts {
+        display: grid;
+        gap: 2em;
     }
 
-    .test h2 {
-        text-align: center;
+    .post {
+        max-inline-size: 60ch;
+    }
+
+    .post:not(:last-child) {
+        border-bottom: 1px solid var(--clr-neutral-500);
+        padding-bottom: 2rem;
     }
 </style>

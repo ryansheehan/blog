@@ -1,0 +1,9 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+			<channel>
+				<title>RyShe</title>
+				<description>A place for my thoughts</description>
+				<link>https://ryshe.xyz/</link>
+				<atom:link href="https://ryshe.xyz//rss.xml" rel="self" type="application/rss+xml"/>
+				
+			</channel>
+		</rss>
