@@ -30,6 +30,16 @@ export const GET: RequestHandler = async ({fetch}) => {
             <changefreq>daily</changefreq>
             <priority>0.7</priority>
         </url>
+        <url>
+            <loc>${url}about</loc>
+            <changefreq>yearly</changefreq>
+            <priority>0.1</priority>
+        </url>
+        <url>
+            <loc>${url}resume</loc>
+            <changefreq>monthly</changefreq>
+            <priority>0.7</priority>
+        </url>
         ${posts}
         </urlset>`.trim(),
         {
