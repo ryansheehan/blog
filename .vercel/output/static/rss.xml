@@ -5,5 +5,21 @@
 				<link>https://ryshe.xyz/</link>
 				<atom:link href="https://ryshe.xyz//rss.xml" rel="self" type="application/rss+xml"/>
 				
+						<item>
+							<title>This is a Demo Post 3</title>
+							<description>Test data for posts</description>
+							<link>https://ryshe.xyz//demo-post3</link>
+							<guid isPermaLink="true">https://ryshe.xyz//demo-post3</guid>
+							<pubDate>Sun, 19 Nov 2023 06:00:00 GMT</pubDate>
+						</item>
+					
+						<item>
+							<title>This is a Demo Post 2</title>
+							<description>Test data for posts</description>
+							<link>https://ryshe.xyz//demo-post2</link>
+							<guid isPermaLink="true">https://ryshe.xyz//demo-post2</guid>
+							<pubDate>Fri, 10 Nov 2023 06:00:00 GMT</pubDate>
+						</item>
+					
 			</channel>
 		</rss>
