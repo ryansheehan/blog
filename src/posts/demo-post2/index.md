@@ -2,6 +2,7 @@
 title: This is a Demo Post 2
 description: Test data for posts
 date: 11/10/2023
+published: true
 ---
 
 ![test](./test.jpg)
