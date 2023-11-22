@@ -3,6 +3,8 @@ import {writable, get} from 'svelte/store';
 import {Theme, defaultTheme, cookieKey, themeAttr, cookieDuration} from './theme-types';
 import cookies from 'js-cookie';
 
+export {Theme} from './theme-types';
+
 const setHtml = (theme: Theme) => {
     if(browser) {        
         const html = document.querySelector('html')! as HTMLElement;

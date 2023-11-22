@@ -3,6 +3,8 @@
     import type {PostFrontMatter} from '$lib/front-matter';
     import {formatDate} from '$lib/utils';
 
+    import Filler from '$lib/components/filler.svelte'
+
     const posts: PostFrontMatter[] = data.posts;
     
 </script>
@@ -19,18 +21,8 @@
     </ul>
 </section>
 
+<Filler />
+
 <style lang="scss">
-    .posts {
-        display: grid;
-        gap: 2em;
-    }
-
-    .post {
-        max-inline-size: 60ch;
-    }
-
-    .post:not(:last-child) {
-        border-bottom: 1px solid var(--clr-neutral-500);
-        padding-bottom: 2rem;
-    }
+    
 </style>
