@@ -67,8 +67,6 @@
 </header>
 
 <style lang="scss">
-	$defaultHeaderHeight: 56px;
-
 	.primary-header {
 		padding-block: 1rem;
 		margin-block-end: 3rem;
@@ -95,10 +93,7 @@
 	a:active,
 	a:visited {
 		color: inherit;
-	}
-
-	.home-link {
-		text-decoration: none;
+        text-decoration: none;
 	}
 
 	li {
@@ -107,7 +102,6 @@
 
 	li a {
 		position: relative;
-		text-decoration: none;
 
 		&::before {
 			content: '';
@@ -119,7 +113,7 @@
 			translate: -50%;
 			background-color: transparent;
 			border-bottom: 1px solid var(--color);
-			transition: width 0.2s ease-in-out;
+			transition: width 0.3s ease-in-out;
 		}
 
 		&.active-route::before {
@@ -131,51 +125,12 @@
         position: sticky;
         top: 0;
         opacity: 1;
-        transition: translate .2s linear, opacity .15s linear;
+        translate: 0 0;
+        transition: translate .2s linear;
     }
 
     header.down {
-	    translate: 0 calc(var(--navbar-height, $defaultHeaderHeight) * -1);
-	    opacity: 0;
+	    translate: 0px -100%;
 	}
 
-	// header {
-	//     width: 100%;
-	//     display: flex;
-	//     align-items: center;
-	//     justify-content: space-between;
-	//     height: var(--navbar-height, $defaultHeaderHeight);
-	//     background-color: var(--background-color);//transparent;//var(--clr-primary-400);
-	//     padding-inline: 2rem;
-	//     position: sticky;
-	//     top: 0;
-	//     opacity: 1;
-	//     background-color: var(--clr-primary-600);
-
-	//     // backdrop-filter: blur(5px);
-
-	//     transition: translate .2s linear, opacity .15s linear;
-	// }
-
-	// nav {
-	//     flex: 1;
-	//     display: flex;
-	// }
-
-	// ul {
-	//     flex: 1;
-	//     display: flex;
-	//     gap: 1rem;
-	//     list-style-type: none;
-	// }
-
-	// a[href="/"] {
-	//     flex: none;
-	//     text-decoration: none;
-	// }
-
-	// header.down {
-	//     translate: 0 calc(var(--navbar-height, $defaultHeaderHeight) * -1);
-	//     opacity: 0;
-	// }
 </style>
