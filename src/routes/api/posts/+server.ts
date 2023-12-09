@@ -1,19 +1,21 @@
 import { json } from '@sveltejs/kit'
-import type { PostFrontMatter } from '$lib/front-matter'
+import type { PostFrontMatter, RawPostFrontMatter } from '$lib/front-matter'
 import {dev} from '$app/environment';
 
-async function getPosts() {
-	let posts: PostFrontMatter[] = []
+const paths = import.meta.glob(['/src/posts/*/*.md'], { eager: true });
 
-	const paths = import.meta.glob(['/src/posts/*/*.md'], { eager: true })
+async function getPosts() {
+	let posts: PostFrontMatter[] = [];
 
 	for (const path in paths) {
 	 	const file = paths[path]
-	 	const slug = path.split('/').at(-2);		
+	 	const slug = path.split('/').at(-2)!;					
 
 		if (file && typeof file === 'object' && 'metadata' in file && slug) {
-			const metadata = file.metadata as Omit<PostFrontMatter, 'slug'>
-			const post = { ...metadata, slug } satisfies PostFrontMatter;
+			const metadata = file.metadata as RawPostFrontMatter
+			const published = metadata.published ?? false;
+			
+			const post = { ...metadata, slug, published } satisfies PostFrontMatter;			
 
 			if (post.published || dev) {
 				posts.push(post)

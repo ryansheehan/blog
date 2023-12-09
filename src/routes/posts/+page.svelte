@@ -1,1 +1,3 @@
-<p>Posts</p>
+<article>
+    
+</article>

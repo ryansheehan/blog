@@ -3,6 +3,9 @@ title: This is a Demo Post 2
 description: Test data for posts
 date: 11/10/2023
 published: true
+image:
+    ext: jpg
+    alt: testing alt text here    
 ---
 
 ![test](./test.jpg)

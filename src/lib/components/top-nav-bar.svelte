@@ -52,13 +52,13 @@
 		<nav>
 			<ul>
 				<li>
-					<a href="/posts" class:active-route={$page.url.pathname.startsWith(`/posts`)}>thoughts</a>
+					<a href="/posts" class:active-route={$page.url.pathname.startsWith(`/posts`)}>posts</a>
 				</li>
 				<li>
 					<a href="/resume" class:active-route={$page.url.pathname.startsWith(`/resume`)}>resume</a>
 				</li>
 				<li>
-					<a href="/about" class:active-route={$page.url.pathname.startsWith(`/about`)}>about me</a>
+					<a href="/about" class:active-route={$page.url.pathname.startsWith(`/about`)}>about</a>
 				</li>
 			</ul>
 		</nav>
@@ -113,10 +113,10 @@
 			translate: -50%;
 			background-color: transparent;
 			border-bottom: 1px solid var(--color);
-			transition: width 0.3s ease-in-out;
+			transition: width 0.2s ease-in-out;
 		}
 
-		&.active-route::before {
+		&.active-route::before, &:hover::before {
 			width: 100%;
 		}
 	}

@@ -12,7 +12,7 @@
 </svelte:head>
 
 <article>
-  <!-- Title -->
+   <!-- Title -->
 	<hgroup>
 		<h1>{data.meta.title}</h1>
 		{#if data.meta.date}
@@ -20,17 +20,17 @@
 		{/if}
 	</hgroup>
 
-  <!-- Tags -->
-	<div class="tags">
+   <!-- Tags -->
+	<aside class="tags">
 		<!-- {#each data.meta.categories as category}
 			<span class="surface-4">&num;{category}</span>
 		{/each} -->
-	</div>
+	</aside>
 
-  <!-- Post -->
-	<div class="prose">
+   <!-- Post -->
+	<section class="prose">
 		<svelte:component this={data.content} />
-	</div>
+	</section>
 </article>
 
 <style lang="scss">
