@@ -57,7 +57,7 @@ export const GET: RequestHandler = async ({url}) => {
 	const take = _take !== null ? Number(_take) : undefined;
 
 	if (skip === Number.NaN || take === Number.NaN) {
-		throw error(400, {message: 'invalid pagination'});
+		error(400, {message: 'invalid pagination'});
 	}
 
 	const posts = await getPosts({skip, take})

@@ -5,9 +5,7 @@
     import Filler from '$lib/components/filler.svelte'
     import Picture from '$lib/components/picture.svelte';
 
-    const posts: PostFrontMatter[] = data.posts;
-    
-    console.log(posts);
+    const posts: PostFrontMatter[] = data.posts;    
 </script>
 
 <section>
