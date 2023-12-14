@@ -1,11 +1,22 @@
-import { json } from '@sveltejs/kit'
-import type { PostFrontMatter, RawPostFrontMatter } from '$lib/front-matter'
+import { error, json, type RequestHandler } from '@sveltejs/kit'
+import type { PostFrontMatter, RawPostFrontMatter, Image } from '$lib/front-matter'
 import {dev} from '$app/environment';
+import type {PaginationRequest} from '$lib/pagination';
 
 const paths = import.meta.glob(['/src/posts/*/*.md'], { eager: true });
 
-async function getPosts() {
-	let posts: PostFrontMatter[] = [];
+const thumbs: Record<string,Image> = import.meta.glob('/src/posts/*/main-image.{avif,gif,heif,jpeg,jpg,png,tiff,webp}', {
+	eager: true,
+	query: {
+		enhanced: true,
+	},		
+});
+
+
+
+async function getPosts({skip, take}: PaginationRequest) {
+	type IntermediatePostFrontMatter = Omit<PostFrontMatter, 'image'> & Pick<RawPostFrontMatter, 'image'>;
+	let rawPosts: IntermediatePostFrontMatter[] = [];
 
 	for (const path in paths) {
 	 	const file = paths[path]
@@ -15,20 +26,40 @@ async function getPosts() {
 			const metadata = file.metadata as RawPostFrontMatter
 			const published = metadata.published ?? false;
 			
-			const post = { ...metadata, slug, published } satisfies PostFrontMatter;			
+			const post = { ...metadata, slug, published };			
 
 			if (post.published || dev) {
-				posts.push(post)
+				rawPosts.push(post)
 			}
 		}
 	}
 
-	posts = posts.sort((first, second) => new Date(second.date).getTime() - new Date(first.date).getTime());
+	const _skip = skip ?? 0;
+	const _take = take ?? rawPosts.length;
 
-	return posts
+	const posts = rawPosts
+		.sort((first, second) => new Date(second.date).getTime() - new Date(first.date).getTime())
+		.slice(_skip, _skip+_take)
+		.map(({image: rawImage, slug, ...props}) => {
+			const image: Image = { ...thumbs[`/src/posts/${slug}/main-image.${rawImage?.ext}`], alt: rawImage?.alt ?? '' }			
+			const frontMatter: PostFrontMatter = {...props, slug, image};
+			return frontMatter;
+		});
+
+	return posts;
 }
 
-export async function GET() {
-	const posts = await getPosts()
+export const GET: RequestHandler = async ({url}) => {
+	const _skip = url.searchParams.get('skip');
+	const _take = url.searchParams.get('take');
+
+	const skip = _skip !== null ? Number(_skip) : undefined;
+	const take = _take !== null ? Number(_take) : undefined;
+
+	if (skip === Number.NaN || take === Number.NaN) {
+		throw error(400, {message: 'invalid pagination'});
+	}
+
+	const posts = await getPosts({skip, take})
 	return json(posts)
 }

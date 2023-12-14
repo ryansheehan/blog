@@ -12,7 +12,13 @@ export interface Image {
 			w: number;
 			h: number;
 		}
-	}
+	},
+	alt: string;
+}
+
+export interface RawImage {
+	ext: ImageExt | string;
+	alt?: string;
 }
 
 export type ImageExt = 'avif' | 'gif' | 'heif' | 'jpeg' | 'jpg' | 'png' | 'tiff' | 'webp';
@@ -34,9 +40,10 @@ export interface RawPostFrontMatter {
 	}
 }
 
-export interface PostFrontMatter extends RawPostFrontMatter {	
+export interface PostFrontMatter extends Omit<RawPostFrontMatter, 'image'> {	
 	slug: string;
-	published: boolean;	
+	published: boolean;
+	image?: Image;
 }
 
 function validateStringParam(param: string | undefined | null) {

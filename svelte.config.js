@@ -45,7 +45,7 @@ const mdsvexOptions = {
 	rehypePlugins: [
 		[rehypeRewrite, {
 			rewrite: (node) => {
-				if (node.type == 'element' && node.tagName == 'img') {					
+				if (node.type == 'element' && node.tagName == 'img') {
 					node.tagName = 'enhanced:img';
 					// node.properties['sizes'] = "";
 					node.properties['class'] = `post-img ${node.properties['class'] ?? ''}`.trimEnd();
