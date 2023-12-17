@@ -11,7 +11,7 @@ export const handleTheme:Handle = (async ({event, resolve}) => {
     } else {
         const expireDate = new Date();
         expireDate.setDate(expireDate.getDate() + cookieDuration);
-        cookies.set(cookieKey, currentTheme, {expires: expireDate, httpOnly: false, secure: false});        
+        cookies.set(cookieKey, currentTheme, {expires: expireDate, httpOnly: false, secure: false, path: '/'});        
     }
 
     theme.set(currentTheme);

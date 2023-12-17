@@ -50,16 +50,16 @@ async function getPosts({skip, take}: PaginationRequest) {
 }
 
 export const GET: RequestHandler = async ({url}) => {
-	const _skip = url.searchParams.get('skip');
-	const _take = url.searchParams.get('take');
+	// const _skip = url.searchParams.get('skip');
+	// const _take = url.searchParams.get('take');
 
-	const skip = _skip !== null ? Number(_skip) : undefined;
-	const take = _take !== null ? Number(_take) : undefined;
+	// const skip = _skip !== null ? Number(_skip) : undefined;
+	// const take = _take !== null ? Number(_take) : undefined;
 
-	if (skip === Number.NaN || take === Number.NaN) {
-		error(400, {message: 'invalid pagination'});
-	}
+	// if (skip === Number.NaN || take === Number.NaN) {
+	// 	error(400, {message: 'invalid pagination'});
+	// }
 
-	const posts = await getPosts({skip, take})
+	const posts = await getPosts({skip:0, take:3})
 	return json(posts)
 }
