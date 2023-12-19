@@ -9,6 +9,8 @@ const thumbs: Record<string,Image> = import.meta.glob('/src/posts/*/main-image.{
 	eager: true,
 	query: {
 		enhanced: true,
+		w: 200,
+		format: 'webp'
 	},		
 });
 
