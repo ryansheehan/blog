@@ -1,7 +1,5 @@
 <script lang="ts">
     import {theme, Theme} from '$lib/themes/theme.store';
-
-    // 46, 48, 57
 </script>
 
 <button on:click={() => theme.toggle()}>

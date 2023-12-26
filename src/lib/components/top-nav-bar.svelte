@@ -1,55 +1,14 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import ThemeToggle from './theme-toggle.svelte';
 	import SiteLogo from './site-logo.svelte';
-	import { page } from '$app/stores';
-
-	enum ScrollDir {
-		None = 'none',
-		Up = 'up',
-		Down = 'down'
-	}
-
-	$: scrollDirection = ScrollDir.None;
-	$: scrollPos = 0;
-
-	onMount(() => {
-		const TIMEOUT = 150; //ms
-		let timer: NodeJS.Timeout | null = null;
-
-		const checkScrollPosition = () => {
-			const newScrollPos = document.documentElement.scrollTop;
-
-			if (newScrollPos === scrollPos) {
-				scrollDirection = ScrollDir.None;
-			} else if (newScrollPos > scrollPos) {
-				scrollDirection = ScrollDir.Down;
-			} else {
-				scrollDirection = ScrollDir.Up;
-			}
-
-			scrollPos = newScrollPos;
-		};
-
-		const scrollListener: EventListener = () => {
-			if (timer !== null) {
-				clearTimeout(timer);
-			}
-			timer = setTimeout(checkScrollPosition, TIMEOUT);
-		};
-
-		window.addEventListener('scroll', scrollListener);
-	});
+	import { page } from '$app/stores';	
+	import NavDrawer from './nav-drawer.svelte';
 </script>
 
-<header
-	class="primary-header content-grid"
-	class:down={scrollDirection === ScrollDir.Down}
-	class:scrolled={scrollPos > 0}
->
+<header class="primary-header content-grid">
 	<div class="primary-header__layout breakout">
 		<a href="/" class="home-link"><SiteLogo /><span class="visually-hidden">Site Home</span></a>
-		<nav>
+		<nav class="primary-navigation">
 			<ul>
 				<li>
 					<a href="/posts" class:active-route={$page.url.pathname.startsWith(`/posts`)}>posts</a>
@@ -62,11 +21,32 @@
 				</li>
 			</ul>
 		</nav>
-		<ThemeToggle --max-size="24px" />
+		<div class="theme-toggle">
+			<ThemeToggle --max-size="24px" />
+		</div>
+		<div class="nav-drawer">
+			<NavDrawer/>
+		</div>
 	</div>
 </header>
 
 <style lang="scss">
+	@use "$lib/sass/layout/breakpoints" as *;
+
+	.nav-drawer {
+		@include md {
+			display: none;
+		}
+	}
+
+	.primary-navigation, .theme-toggle {
+		display: none;
+
+		@include md {
+			display: block;
+		}
+	}
+
 	.primary-header {
 		padding-block: 1rem;
 		margin-block-end: 3rem;
@@ -128,9 +108,4 @@
         translate: 0 0;
         transition: translate .2s linear;
     }
-
-    header.down {
-	    translate: 0px -100%;
-	}
-
 </style>
