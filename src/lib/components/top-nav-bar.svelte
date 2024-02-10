@@ -107,5 +107,6 @@
         opacity: 1;
         translate: 0 0;
         transition: translate .2s linear;
+		height: 5rem;
     }
 </style>

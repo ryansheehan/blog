@@ -31,6 +31,11 @@
 
 <style lang="scss">
 
+    button {
+        background-color: transparent;
+        border: none;
+    }
+
     dialog {
         border: none;
         padding: 0;
