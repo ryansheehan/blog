@@ -1,7 +1,7 @@
 import adapter from '@sveltejs/adapter-vercel';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex, escapeSvelte } from 'mdsvex';
-import shiki from 'shiki';
+import {getHighlighter} from 'shiki';
 
 import remarkUnwrapImages from 'remark-unwrap-images';
 import remarkToc from 'remark-toc';
@@ -32,7 +32,7 @@ const mdsvexOptions = {
 	},
 	highlight: {
 		highlighter: async (code, lang = 'text') => {
-			const highlighter = await shiki.getHighlighter({ theme: 'poimandres' })
+			const highlighter = await getHighlighter({ theme: 'poimandres' })
 			const html = escapeSvelte(highlighter.codeToHtml(code, { lang }))
 			return `{@html \`${html}\` }`
 		},
