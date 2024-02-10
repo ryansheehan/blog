@@ -2,7 +2,6 @@
     export let data;
     import type {PostFrontMatter, Image} from '$lib/front-matter';
     import {formatDate} from '$lib/utils';
-    import Filler from '$lib/components/filler.svelte'
     import Picture from '$lib/components/picture.svelte';
 
     const posts: PostFrontMatter[] = data.posts;    
@@ -12,20 +11,26 @@
     <ul class="posts">        
         {#each posts as post (post.slug)}
         <li class="post">
-            <a href="posts/{post.slug}" class="title"><h3>{post.title}</h3></a>
-            {#if post.image?.default}                
-                <Picture image={post.image} />
-            {/if}
-            
-            <p class="date">{formatDate(post.date)}</p>
-            <p class="description">{post.description}</p>            
+            <a href="posts/{post.slug}">
+                <p class="date">{formatDate(post.date)}</p>
+                <h3 class="title">{post.title}</h3>
+                {#if post.image?.default}                
+                    <Picture image={post.image} />
+                {/if}
+                <p class="description">{post.description}</p>      
+            </a>      
         </li>
         {/each}        
     </ul>
 </section>
 
-<Filler />
-
 <style lang="scss">
-    
+    li {
+        list-style-type: none;
+        padding-bottom: 2rem;
+    }
+
+    a:hover {
+        background-color: pink;
+    }
 </style>
