@@ -2,31 +2,28 @@
     
 </script>
 
-<div>    
-    <span class="first-name">Ryan</span><div class="divider"></div><span class="last-name">Sheehan</span>
+<div class="logo-container">    
+    <div class="first-name">Ryan</div>
+    <div class="last-name">Sheehan</div>
 </div>
 
 <style lang="scss">
-    div {
-        background-color: darkblue;
+    .logo-container {
+        --fs-logo: 1.8rem;
+
+        display: flex;
+        flex-flow: column nowrap;
+        line-height: calc(.75 * var(--fs-logo));
+
+        color: var(--clr-primary-600);
     }
 
     .first-name, .last-name {
         text-transform: uppercase;
-        font-size: 1em;
+        font-size: var(--fs-logo);
     }
 
-    .first-name {
-        vertical-align: super;        
-    }
-
-    .last-name {        
-        vertical-align: sub;        
-    }
-
-    .divider {
-        display: inline-block;
-        border-right: 1px solid white;
-        height: 100%;
+    .last-name {
+        text-indent: calc(1.3 * var(--fs-logo));
     }
 </style>

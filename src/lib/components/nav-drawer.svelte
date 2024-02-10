@@ -1,6 +1,7 @@
 <script lang="ts">
     import {Menu} from 'lucide-svelte';
     import { page } from '$app/stores';	
+    import ThemeToggle from './theme-toggle.svelte';
 
     let dialog: HTMLDialogElement;
 </script>
@@ -11,6 +12,9 @@
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <dialog bind:this={dialog} on:click={() => dialog.close()}>
+    <div class="theme-toggle-container">
+        <ThemeToggle/>
+    </div>
     <nav aria-label="site navigation">
         <ul>
             <li>
@@ -44,6 +48,7 @@
         width: 75%;
         height: 100%;
         background-color: var(--header-background-color);
+        padding-top: 1rem;
     }
 
     nav ul {
@@ -88,4 +93,10 @@
 			width: 100%;
 		}
 	}
+
+    .theme-toggle-container {
+        height: 36px;
+        display: flex;
+        justify-content: center;
+    }
 </style>
